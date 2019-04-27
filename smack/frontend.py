@@ -6,6 +6,7 @@ from rq import Queue
 from twilio.twiml.messaging_response import MessagingResponse
 from .commands import Commands
 from .message import Message
+from .models import PhoneNumber, Message
 
 import logging
 from . import config

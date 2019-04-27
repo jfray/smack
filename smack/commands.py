@@ -1,6 +1,8 @@
 import subprocess
+import sys
 
 from .message import Message
+from .models import PhoneNumber, Message
 from os.path import expanduser
 
 class Commands:
@@ -34,6 +36,8 @@ class Commands:
     @classmethod
     def cmd_help(self, resp=None):
         if len(resp['args']) != 1:
+            pn = Phonenumber.objects.all()
+            sys.stderr.write("Here are some objects: %s\n" % pn)
             self.msg.send(
                     to=resp['From'],
                     body=self.usage()
