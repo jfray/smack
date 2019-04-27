@@ -1,14 +1,14 @@
 #!/usr/bin/env python
 
-from flask import Flask, request, redirect
+from flask import Flask, request, redirect, render_template, g
 from redis import Redis
 from rq import Queue
 from twilio.twiml.messaging_response import MessagingResponse
-from smack.commands import Commands
-from smack.message import Message
+from .commands import Commands
+from .message import Message
 
 import logging
-import smack.config as config
+from . import config
 
 app = Flask(__name__)
 
