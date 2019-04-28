@@ -68,3 +68,4 @@ settings.py
 # Flango experiment
 flango_temp/*
 /db.sqlite3
+app.log

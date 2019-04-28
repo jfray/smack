@@ -5,17 +5,24 @@ from redis import Redis
 from rq import Queue
 from twilio.twiml.messaging_response import MessagingResponse
 from .commands import Commands
-from .message import Message
-from .models import PhoneNumber, Message
+from .msg import Msg
+from . import config
+
+import sys
 
 import logging
-from . import config
+logging.basicConfig(
+        filename='app.log', 
+        level=logging.DEBUG, 
+        filemode='a', 
+        format='%(name)s - %(levelname)s - %(message)s'
+        )
 
 app = Flask(__name__)
 
 c = Commands()
 q = Queue(connection=Redis())
-m = Message()
+m = Msg()
 
 @app.route("/", methods=['GET'])
 def index():

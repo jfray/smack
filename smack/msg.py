@@ -4,7 +4,7 @@ from .worker import Worker
 from . import config
 import os
 
-class Message:
+class Msg:
 
     def __init__(self):
         self.account_sid = os.environ.get('TWILIO_ACCOUNT_SID')

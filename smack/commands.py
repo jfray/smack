@@ -1,13 +1,13 @@
 import subprocess
 import sys
 
-from .message import Message
+from .msg import Msg
 from .models import PhoneNumber, Message
 from os.path import expanduser
 
 class Commands:
 
-    msg = Message()
+    msg = Msg()
 
     def __init__(self):
 
