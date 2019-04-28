@@ -29,6 +29,17 @@ SMS-based chat room, similar-ish to Slack. There's a built-in invite system, mut
 * `python manage.py rqworker` will process whatever is currently in the queue
 * `python manage.py rqstats` will provide you information on what's in the queue
 * `rq empty <default|failed>` will clear the specified queue
+* django_rq is configured via your `smack.settings` file. A minimal configuration looks like this:
+  
+```    RQ_QUEUES = {
+      'default': {
+          'HOST': 'localhost',
+         'PORT': 6379,
+         'DB': 0,
+        }
+      }
+```
+* For further configuration options, please refer [here](https://github.com/rq/django-rq#support-for-django-redis-and-django-redis-cache)
 
 ## Honcho 💬
 * honcho start will start all your services
@@ -74,3 +85,4 @@ SMS-based chat room, similar-ish to Slack. There's a built-in invite system, mut
  * 'AccountSid', 'ACdd5eac9075d080bd7c50819cbf25b64b'
  * 'From', '+15107755852'
  * 'ApiVersion', '2010-04-01'
+	
