@@ -1,6 +1,6 @@
 # original pip
 flask
-rq
+django-rq
 requests
 twilio
 neomodel

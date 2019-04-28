@@ -5,6 +5,14 @@ from .msg import Msg
 from .models import PhoneNumber, Message
 from os.path import expanduser
 
+import logging
+logging.basicConfig(
+    filename='app.log',
+    level=logging.DEBUG,
+    filemode='a',
+    format='%(name)s - %(levelname)s - %(message)s'
+   )
+
 class Commands:
 
     msg = Msg()
@@ -36,8 +44,8 @@ class Commands:
     @classmethod
     def cmd_help(self, resp=None):
         if len(resp['args']) != 1:
-            pn = Phonenumber.objects.all()
-            sys.stderr.write("Here are some objects: %s\n" % pn)
+            pn = PhoneNumber.objects.all()
+            logging.info("Here are some objects: %s\n" % pn)
             self.msg.send(
                     to=resp['From'],
                     body=self.usage()

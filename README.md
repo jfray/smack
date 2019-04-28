@@ -25,9 +25,9 @@ SMS-based chat room, similar-ish to Slack. There's a built-in invite system, mut
 ## Twilio 💬
 * This app requires a Twilio account, setup to post to whatever IP/port you've exposed on the server
 
-## Redis Queue (rq) 💬
-* `rq worker` will process whatever is currently in the queue
-* `rq info <default|failed>` will give information about what's currently in the queue
+## Redis Queue for Django (django_rq) 💬
+* `python manage.py rqworker` will process whatever is currently in the queue
+* `python manage.py rqstats` will provide you information on what's in the queue
 * `rq empty <default|failed>` will clear the specified queue
 
 ## Honcho 💬

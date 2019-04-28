@@ -1,27 +1,16 @@
 #!/usr/bin/env python
 
-from flask import Flask, request, redirect, render_template, g
+from flask import Flask, request
 from redis import Redis
-from rq import Queue
+import django_rq 
 from twilio.twiml.messaging_response import MessagingResponse
 from .commands import Commands
 from .msg import Msg
 from . import config
 
-import sys
-
-import logging
-logging.basicConfig(
-        filename='app.log', 
-        level=logging.DEBUG, 
-        filemode='a', 
-        format='%(name)s - %(levelname)s - %(message)s'
-        )
-
 app = Flask(__name__)
 
 c = Commands()
-q = Queue(connection=Redis())
 m = Msg()
 
 @app.route("/", methods=['GET'])
@@ -44,7 +33,7 @@ def process_sync():
 def process_async():
     resp = m.parse(request)
     command = resp['command']
-    q.enqueue(c.combined[command], resp)
+    django_rq.enqueue(c.combined[command], resp)
     logging.info("Enqueued: %s" % command)
 
     return ('', 204)
