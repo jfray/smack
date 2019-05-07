@@ -44,17 +44,11 @@ class Commands:
     @classmethod
     def cmd_help(self, resp=None):
         if len(resp['args']) != 1:
-            pn = PhoneNumber.objects.all()
-            logging.info("Here are some objects: %s\n" % pn)
-            self.msg.send(
-                    to=resp['From'],
-                    body=self.usage()
-            )
+            resp['response'] = self.usage()
+            self.msg.send(resp)
         else:
-            self.msg.send(
-                    resp['From'],
-                    body=self.usage(command=resp['args'][0])
-            )
+            resp['response'] = self.usage(command=resp['args'][0])
+            self.msg.send(resp)
             
     @classmethod
     def cmd_invite(self, resp=None):
@@ -72,15 +66,40 @@ class Commands:
     @classmethod
     def cmd_join(self, resp=None):
         if len(resp['args']) != 1:
-            self.msg.send(
+            return self.msg.send(
                     resp['From'],
                     body=self.usage('join')
                     )
         else:
-            self.msg.send(
-                    resp['From'],
-                    body="This is where a join command would be"
-                )
+            user_add = resp['args'][0].lower()
+            if len(user_add) > 20:
+               return self.msg.send(
+                  resp['From'],
+                  body=self.usage('join')
+               )
+            else:
+               if User.objects.filter(username=user_add).count() > 0 or \
+                     PhoneNumber.objects.filter(
+                              number=resp['From']).count() > 0:
+                  return self.msg.send(
+                        resp['From'],
+                        body="You are already registered as %s. "
+                        "Use #udpate <nickname> to change your nickname. "
+                        "(20 letter maximum)" % user_add
+                        )
+               
+                  u = User.objects.create(username=user_add)
+                  pn = PhoneNumber.objects.create(
+                        number = resp['From'],
+                        owner = u
+                        )
+
+                  return self.msg.send(
+                        resp['From'],
+                        body="User %s has been added with "
+                        "phone number %s" % (user_add, resp['From'])
+                        )
+            
 
     @classmethod
     def cmd_list(self, resp=None):

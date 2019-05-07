@@ -30,13 +30,13 @@ class Msg:
 
         return resp
 
-    def send(self, to, body):
+    def send(self, resp):
         client = Client(self.account_sid, self.auth_token)
 
         message = client.messages.create(
-                body = body,
+                body = resp['Body'],
                 from_= self.twilio_number,
-                to = to
+                to = resp['From']
                 )
 
         return message.sid

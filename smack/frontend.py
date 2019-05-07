@@ -32,9 +32,13 @@ def process_sync():
 @app.route("/txt/async", methods=['POST'])
 def process_async():
     resp = m.parse(request)
-    command = resp['command']
-    django_rq.enqueue(c.combined[command], resp)
-    logging.info("Enqueued: %s" % command)
+    command = resp.get('command', None)
+    if command:
+        django_rq.enqueue(c.combined[command], resp)
+        logging.info("Enqueued: %s" % command)
+    else:
+        django_rq.enqueue(m.send, resp)
+        logging.info("Enqueued: send")
 
     return ('', 204)
 
