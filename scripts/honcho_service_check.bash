@@ -5,7 +5,7 @@ service=${1}
 
 # Don't spam the honcho output. Only display the first time through
 show_text=0
-while [ 1 ]; do
+while [ true ]; do
 
   if brew services list | grep "${service}" | grep -i "start" | grep -v grep >/dev/null 2>&1; then
     [[ ${show_text} -eq 0 ]] && echo "brew services list for ${service} is running."
@@ -25,6 +25,6 @@ while [ 1 ]; do
   sleep 5
 
   # avoid spamming output starting the second time through
-  show_text=1
+  show_text=$((show_text + 1))
 
 done

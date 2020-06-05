@@ -38,8 +38,19 @@ class Commands:
             'random': self.cmd_random
         }
 
+        ## TODO: Custom commands really should be via external API call
+        ## would make for a much cleaner split between builtin/custom instead
+        ## of this override pattern
+
         self.combined = self.builtin.copy()
         self.combined.update(self.custom)
+
+
+    ## TODO: These functions need to be replaced with step-based versions
+    ## i.e.; do its thing and then re-queue. This would require a way
+    ## of knowing what's already been done, and what still needs to be done
+    ## with send being one of the steps - not necessarily always the last one.
+    ## This allows for post-sending tasks to be included as well.
 
     @classmethod
     def cmd_help(self, resp=None):
@@ -50,6 +61,9 @@ class Commands:
             resp['response'] = self.usage(command=resp['args'][0])
             self.msg.send(resp)
             
+    ## TODO: I really don't like the args stuff here. Need to create a function
+    ## that manages all that stuff. Maybe use it to inform help text?
+
     @classmethod
     def cmd_invite(self, resp=None):
         if len(resp['args']) != 1:
@@ -65,6 +79,8 @@ class Commands:
 
     @classmethod
     def cmd_join(self, resp=None):
+       #TODO: this needs to be abstracted out, I really don't like how much is needed here just to send a quick message back
+       #TODO: Also, this needs to be enqueued, and not just send synchronously
         if len(resp['args']) != 1:
             return self.msg.send(
                     resp['From'],
@@ -167,7 +183,7 @@ class Commands:
                 )
 
     @classmethod
-    def cmd_stop(self, resp=None):
+    def cmd_top(self, resp=None):
         if len(resp['args']) != 0:
             self.msg.send(
                     resp['From'],

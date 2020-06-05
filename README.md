@@ -85,4 +85,14 @@ SMS-based chat room, similar-ish to Slack. There's a built-in invite system, mut
  * 'AccountSid', 'ACdd5eac9075d080bd7c50819cbf25b64b'
  * 'From', '+15107755852'
  * 'ApiVersion', '2010-04-01'
-	
+
+
+## Roadmap Stuff
+
+ * Rules engine that has access to Twilio data
+  * `if sms.SmsStatus == 'recieved': do.something(interesting)`
+ * Update get\_reply\_numbers with more performant fanout
+ * Package this as Dockerfile, with appropriate network config
+ * Migrate custom commands to external API
+  * Create admin screen to add new commands
+ * Script phone number/shortcode provisioning and Twilio config
