@@ -10,7 +10,7 @@ https://docs.djangoproject.com/en/1.10/howto/deployment/wsgi/
 import os
 
 from django.core.wsgi import get_wsgi_application
-from werkzeug.wsgi import DispatcherMiddleware
+from werkzeug.middleware.dispatcher import DispatcherMiddleware
 
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "smores.settings")
 

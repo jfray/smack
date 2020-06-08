@@ -35,10 +35,10 @@ def process_async():
     command = resp.get('command', None)
     if command:
         django_rq.enqueue(c.combined[command], resp)
-        logging.info("Enqueued: %s" % command)
+        config.log.info("Enqueued: %s" % command)
     else:
         django_rq.enqueue(m.send, resp)
-        logging.info("Enqueued: send")
+        config.log.info("Enqueued: send")
 
     return ('', 204)
 
