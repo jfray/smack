@@ -1,4 +1,4 @@
-# Smack 💬
+# Smores 💬
 SMS-based chat room, similar-ish to Slack. There's a built-in invite system, muting/unmuting, and it's easily extendable. Have at it!
 
 # Usage 💬
@@ -7,8 +7,8 @@ SMS-based chat room, similar-ish to Slack. There's a built-in invite system, mut
 * `#invite <phone number>`: Invite a new user via SMS to the phone number provided
 * `#who <nickname>`: Get information about a user by providing their nickname if the profile is set to public. Default is private
 * `#private <on|off>`: Make your profile public or private. Default is private
-* `#stop`: Stop receiving messages from this Smack room
-* `#start`: Start receiving message from this Smack room
+* `#stop`: Stop receiving messages from this Smores room
+* `#start`: Start receiving message from this Smores room
 * `#list`: List all users in the room
 * `#resend <number>`: Resend the previous \<number> of messages sent to you
 * `#mute <nickname> <on|off>`: Stop or start receiving messages from this user
@@ -29,7 +29,7 @@ SMS-based chat room, similar-ish to Slack. There's a built-in invite system, mut
 * `python manage.py rqworker` will process whatever is currently in the queue
 * `python manage.py rqstats` will provide you information on what's in the queue
 * `rq empty <default|failed>` will clear the specified queue
-* django_rq is configured via your `smack.settings` file. A minimal configuration looks like this:
+* django_rq is configured via your `smores.settings` file. A minimal configuration looks like this:
   
 ```    RQ_QUEUES = {
       'default': {
@@ -45,9 +45,9 @@ SMS-based chat room, similar-ish to Slack. There's a built-in invite system, mut
 * honcho start will start all your services
 
 ## Create Database 💬
- * Smack uses the Flango pattern (Flask in the front, Django in the back), as described [here](https://github.com/kennethreitz/flango) by @kennethreitz
- * The traditional `app.py` for Flask is instead `smack/frontend.py`
- * Build the DB by updating `smack/settings.py` with your database connection information, then run `python manage.py migrate --run-syncdb`
+ * Smores uses the Flango pattern (Flask in the front, Django in the back), as described [here](https://github.com/kennethreitz/flango) by @kennethreitz
+ * The traditional `app.py` for Flask is instead `smores/frontend.py`
+ * Build the DB by updating `smores/settings.py` with your database connection information, then run `python manage.py migrate --run-syncdb`
 
 ## Phonenumber Data Model 💬
 * Number: User's phone number, string, length=10 (US Only), 25 (Int'l)

@@ -1,5 +1,5 @@
 """
-WSGI config for smack project.
+WSGI config for smores project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
@@ -12,7 +12,7 @@ import os
 from django.core.wsgi import get_wsgi_application
 from werkzeug.wsgi import DispatcherMiddleware
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "smack.settings")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "smores.settings")
 
 application = get_wsgi_application()
 

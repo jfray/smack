@@ -9,7 +9,7 @@ class PhoneNumberManager(models.Manager):
             owner__in=muted_by).exclude(is_active=False)]
 
 class PhoneNumber(models.Model):
-    """Phone numbers for the smack texting."""
+    """Phone numbers for the smores texting."""
     number = models.CharField(max_length=10)
     owner = models.ForeignKey(User, on_delete=models.PROTECT)
     muted_by = models.ManyToManyField(User, related_name="muted_users")

@@ -280,8 +280,8 @@ class Commands:
             'private': '#private <on|off>: Make your profile public or private. Default is private',
             'random': '#random <movie|food|mcu|marvel>: Receive a random choice from these topics',
             'resend': '#resend <number>: Resend the previous <number> of messages sent to you',
-            'start': '#start: Start receiving messages from this Smack room',
-            'stop': '#stop: Stop receiving messages from this Smack room',
+            'start': '#start: Start receiving messages from this Smores room',
+            'stop': '#stop: Stop receiving messages from this Smores room',
             'test': '#test',
             'update': '#update <new_nickname>: Update your nickname (20 letter max)',
             'who': '#who <nickname>: Get information about a user by providing their nickname if the profile is set '
