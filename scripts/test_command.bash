@@ -25,5 +25,5 @@ if [[ -z "${TWILIO_MYNUM}" ]]; then
 fi
 
 for c in ${commands}; do
-  curl -X POST http://localhost:5300/txt/async -d "From=${TWILIO_MYNUM}" -d "body=#${c} ${args}"
+  curl -X POST http://localhost:5300/txt/async -d "From=${TWILIO_MYNUM}" -d "Body=#${c} ${args}"
 done

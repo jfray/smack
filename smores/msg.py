@@ -19,8 +19,8 @@ class Msg:
         for key in request.form.keys():
             resp[key] = request.form[key]
 
-        body_parts = request.form['body'].split()
-        if request.form['body'].startswith(config.COMMAND_IDENTIFIER):
+        body_parts = request.form['Body'].split()
+        if request.form['Body'].startswith(config.COMMAND_IDENTIFIER):
             command = body_parts[0].lstrip(config.COMMAND_IDENTIFIER).lower()
         else:
             command = None
